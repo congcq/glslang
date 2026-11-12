@@ -1269,7 +1269,8 @@ TFunction* TParseContext::handleFunctionDeclarator(const TSourceLoc& loc, TFunct
                 error(loc, "overloaded functions must have the same parameter storage qualifiers for argument", function[i].type->getStorageQualifierString(), "%d", i+1);
 
             if ((*prevDec)[i].type->getQualifier().precision != function[i].type->getQualifier().precision)
-                error(loc, "overloaded functions must have the same parameter precision qualifiers for argument", function[i].type->getPrecisionQualifierString(), "%d", i+1);
+                // error(loc, "overloaded functions must have the same parameter precision qualifiers for argument", function[i].type->getPrecisionQualifierString(), "%d", i+1);
+				(*prevDec)[i].type->getQualifier().precision = function[i].type->getQualifier().precision;
 
             if (*(*prevDec)[i].type != *function[i].type)
                 parameterTypesDiffer = true;
